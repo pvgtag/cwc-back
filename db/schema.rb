@@ -33,12 +33,12 @@ ActiveRecord::Schema.define(version: 2018_12_06_160416) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "deadline"
-    t.boolean "completed"
-    t.datetime "started"
+  create_table "projects", comment: "Проекты", force: :cascade do |t|
+    t.string "title", comment: "Заголовок"
+    t.text "body", comment: "Описание"
+    t.datetime "deadline", comment: "Планируемое окончание"
+    t.boolean "completed", comment: "Выполнено"
+    t.datetime "started", comment: "Начато"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -77,4 +77,5 @@ ActiveRecord::Schema.define(version: 2018_12_06_160416) do
   add_foreign_key "comments", "users"
   add_foreign_key "projects", "users"
   add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "users", column: "doer_id"
 end
